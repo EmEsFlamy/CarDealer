@@ -86,7 +86,8 @@ namespace ProjektSR.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("OrderId")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -126,13 +127,13 @@ namespace ProjektSR.Migrations
             modelBuilder.Entity("ProjektSR.Models.Order", b =>
                 {
                     b.HasOne("ProjektSR.Models.Car", "Car")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ProjektSR.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -145,13 +146,13 @@ namespace ProjektSR.Migrations
             modelBuilder.Entity("ProjektSR.Models.Payment", b =>
                 {
                     b.HasOne("ProjektSR.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId")
+                        .WithOne("Payment")
+                        .HasForeignKey("ProjektSR.Models.Payment", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ProjektSR.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Payments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -159,6 +160,24 @@ namespace ProjektSR.Migrations
                     b.Navigation("Order");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ProjektSR.Models.Car", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("ProjektSR.Models.Order", b =>
+                {
+                    b.Navigation("Payment")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProjektSR.Models.User", b =>
+                {
+                    b.Navigation("Orders");
+
+                    b.Navigation("Payments");
                 });
 #pragma warning restore 612, 618
         }

@@ -11,8 +11,8 @@ using ProjektSR.Database;
 namespace ProjektSR.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230125195458_initPayments")]
-    partial class initPayments
+    [Migration("20230129143929_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,9 +26,8 @@ namespace ProjektSR.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("CarType")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CarType")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Mark")
                         .IsRequired()
@@ -90,7 +89,8 @@ namespace ProjektSR.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("OrderId")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -119,6 +119,9 @@ namespace ProjektSR.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("UserType")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
@@ -127,13 +130,13 @@ namespace ProjektSR.Migrations
             modelBuilder.Entity("ProjektSR.Models.Order", b =>
                 {
                     b.HasOne("ProjektSR.Models.Car", "Car")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ProjektSR.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -146,13 +149,13 @@ namespace ProjektSR.Migrations
             modelBuilder.Entity("ProjektSR.Models.Payment", b =>
                 {
                     b.HasOne("ProjektSR.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId")
+                        .WithOne("Payment")
+                        .HasForeignKey("ProjektSR.Models.Payment", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ProjektSR.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Payments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -160,6 +163,24 @@ namespace ProjektSR.Migrations
                     b.Navigation("Order");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ProjektSR.Models.Car", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("ProjektSR.Models.Order", b =>
+                {
+                    b.Navigation("Payment")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProjektSR.Models.User", b =>
+                {
+                    b.Navigation("Orders");
+
+                    b.Navigation("Payments");
                 });
 #pragma warning restore 612, 618
         }

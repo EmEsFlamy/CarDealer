@@ -1,13 +1,19 @@
-﻿namespace ProjektSR.Models
+﻿using System.Text.Json.Serialization;
+
+namespace ProjektSR.Models
 {
     public class Payment
     {
         public int Id { get; set; }
-        public int OrderId { get; set; }
-        public virtual Order Order { get; set; }
-        public int UserId { get; set; }
-        public virtual User User { get; set; }
+        public virtual int OrderId { get; set; }
+        [JsonIgnore]
+        public Order? Order { get; set; }
+        public virtual int UserId { get; set; }
+        [JsonIgnore]
+        public User? User { get; set; }
         
         public DateTime TranscationDate { get; set; }
+
+        
     }
 }

@@ -16,9 +16,16 @@ namespace ProjektSR.Repositories
         }
         public void CreateUser(User user)
         {
-           user.UserType = (int)UserTypeEnum.User;
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            try
+            {
+                user.UserType = (int)UserTypeEnum.User;
+                _context.Users.Add(user);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public User? GetUserByCredentials(UserCredential userCredential)

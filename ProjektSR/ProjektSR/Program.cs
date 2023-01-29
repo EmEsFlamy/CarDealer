@@ -12,6 +12,8 @@ public class Program
 
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<ICarRepository, CarRepository>();
+        builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+        builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 
         builder.Services.AddDbContext<ApplicationDbContext>(options => 
         options.UseSqlite(@"DataSource=appliaction.db;"));
