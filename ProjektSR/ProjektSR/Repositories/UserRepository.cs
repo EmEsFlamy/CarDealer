@@ -4,6 +4,7 @@ using ProjektSR.Helpers;
 using ProjektSR.Interfaces;
 using ProjektSR.Models;
 using ProjektSR.Models.Enums;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ProjektSR.Repositories
 {
@@ -16,12 +17,22 @@ namespace ProjektSR.Repositories
             _encodeHelper = EncodeHelper.Instance();
             _context = context;
         }
-        public void CreateUser(User user)
+        public bool CreateUser(User user)
         {
-            user.Password = _encodeHelper.Encode(user.Password);
-            user.UserType = (int)UserTypeEnum.User;
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            // sprawdz czy podany uzytkownik o podanym mailu juz istnieje, jesli tak zwróć fałsz
+            try
+            {
+                
+                user.Password = _encodeHelper.Encode(user.Password);
+                user.UserType = (int)UserTypeEnum.User;
+                _context.Users.Add(user);
+                _context.SaveChanges();
+            }catch(Exception ex)
+            {
+                return false;
+            }
+            return true;
+            
         }
 
         public bool DeleteUser(int id)

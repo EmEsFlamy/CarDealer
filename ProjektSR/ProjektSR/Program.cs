@@ -7,15 +7,24 @@ public class Program
 {
     public static void Main(string[] args)
     {
-
+        var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         var builder = WebApplication.CreateBuilder(args);
-
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy(MyAllowSpecificOrigins,
+                policy =>
+                {
+                    policy.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+        });
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<ICarRepository, CarRepository>();
         builder.Services.AddScoped<IOrderRepository, OrderRepository>();
         builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 
-        builder.Services.AddDbContext<ApplicationDbContext>(options => 
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlite(@"DataSource=appliaction.db;"));
 
         builder.Services.AddControllers();
@@ -34,6 +43,8 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+
+        app.UseCors(MyAllowSpecificOrigins);
 
         app.UseAuthorization();
 

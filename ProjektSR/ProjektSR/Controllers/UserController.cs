@@ -15,15 +15,15 @@ namespace ProjektSR.Controllers
             _userRepository = userRepository;
         }
 
-        [HttpPost]
-        public IActionResult CreateUser([FromBody] User user)
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] User user)
         {
-            _userRepository.CreateUser(user);
-            return Ok();
+            var result = _userRepository.CreateUser(user);
+            return Ok(result);
         }
 
-        [HttpGet]
-        public IActionResult GetUser([FromQuery] UserCredential userCredential)
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] UserCredential userCredential)
         {
             var user = _userRepository.GetUserByCredentials(userCredential);
             if (user is null) return BadRequest("User does not exist!");
