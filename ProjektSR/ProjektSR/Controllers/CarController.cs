@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjektSR.Interfaces;
 using ProjektSR.Models;
+using ProjektSR.Models.Enums;
 
 namespace ProjektSR.Controllers
 {
@@ -26,6 +27,12 @@ namespace ProjektSR.Controllers
             var car = _carRepository.GetCarById(id);
             if (car is null) return BadRequest("Car does not exist!");
             return Ok(car);
+        }
+        [HttpGet("getCarsByType")]
+        public IActionResult GetCarsByType(CarTypeEnum carType)
+        {
+            var cars = _carRepository.GetCarsByType(carType);
+            return Ok(cars);
         }
     }
 }

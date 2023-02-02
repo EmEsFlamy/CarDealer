@@ -1,4 +1,5 @@
 ﻿using ProjektSR.Models;
+using ProjektSR.Models.Enums;
 
 namespace ProjektSR.Interfaces
 {
@@ -8,7 +9,7 @@ namespace ProjektSR.Interfaces
 
         public Car? GetCarById(int id);
 
-
+        public IEnumerable<Car> GetCarsByType(CarTypeEnum carType);
 
 
     }

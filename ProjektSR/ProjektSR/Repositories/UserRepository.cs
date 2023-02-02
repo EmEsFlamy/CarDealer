@@ -19,26 +19,26 @@ namespace ProjektSR.Repositories
         }
         public bool CreateUser(User user)
         {
-            // sprawdz czy podany uzytkownik o podanym mailu juz istnieje, jesli tak zwróć fałsz
             try
             {
-                
+                var usermail = _context.Users.FirstOrDefault(x => x.Email == user.Email);
+                if (usermail is not null) return false;
                 user.Password = _encodeHelper.Encode(user.Password);
                 user.UserType = (int)UserTypeEnum.User;
                 _context.Users.Add(user);
                 _context.SaveChanges();
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return false;
             }
             return true;
-            
         }
 
         public bool DeleteUser(int id)
         {
             var user = GetUserById(id);
-            if (user is null)  return false;
+            if (user is null) return false;
             _context.Users.Remove(user);
             _context.SaveChanges();
             return true;

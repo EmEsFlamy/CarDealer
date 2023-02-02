@@ -7,28 +7,18 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Car Dealer | Login</title>
+    <title></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../Styles/style.css" />
   </head>
   <body>
-    <div>
-      <h1>logowanie</h1>
-      <form action="" name="LoginForm">
-        <p>
-          E-mail:
-          <input type="text" name="email" placeholder="Your E-mail" />
-        </p>
-        <p>
-          Password:
-          <input type="password" name="password" placeholder="Your Password" />
-        </p>
-      </form>
-      <button onclick="login()">login</button>
-      <a href="./register.html"><button>Register</button></a>
+    <div class="container">
+      <div class="category" onclick="loadCars(0)">Sport</div>
+      <div class="category" onclick="loadCars(1)">Van</div>
+      <div class="category" onclick="loadCars(2)">City Car</div>
+      <div class="category" onclick="loadCars(3)">Luxury</div>
     </div>
-
     <script src="../Scripts/Scripts.js" async defer></script>
   </body>
 </html>
