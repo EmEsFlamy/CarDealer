@@ -12,7 +12,7 @@ namespace ProjektSR.Models
         [JsonIgnore]
         public User? User { get; set; }
         
-        public DateTime TranscationDate { get; set; }
+        public bool IsPaid { get; set; } = false;
 
         
     }

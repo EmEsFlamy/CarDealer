@@ -7,29 +7,22 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Car Dealer | Login</title>
+    <title>Car Dealer</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../Styles/style.css" />
   </head>
   <body>
-    <div>
-      <h1>Login</h1>
-      <form action="" name="LoginForm">
-        <p>
-          E-mail:
-          <input type="text" name="email" placeholder="Your E-mail" />
-        </p>
-        <p>
-          Password:
-          <input type="password" name="password" placeholder="Your Password" />
-        </p>
-        <div id="msg1">User does not exist!</div>
-      </form>
-      <button onclick="login()">login</button>
-      <a href="./register.html"><button>Register</button></a>
-    </div>
-
+    <div id = "msg2">No cars available!</div>
+    <div id="car-list"></div>
     <script src="../Scripts/Scripts.js" async defer></script>
+    <script src="../Scripts/cars.js" async defer></script>
   </body>
 </html>
+<template id="car-template">
+  <div class = "car-container">
+    <h3>Model: <span id = "car-name">Car Model</span></h3>
+    
+    <h4>Price: <span id ="car-price">400</span> PLN</h4>
+  </div>
+</template>

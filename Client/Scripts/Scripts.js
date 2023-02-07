@@ -1,7 +1,6 @@
 const APIURL = "https://localhost:7160/api/";
 
 let user = undefined;
-let cars = undefined;
 
 function login() {
   let email = document.forms["LoginForm"]["email"].value;
@@ -14,10 +13,14 @@ function login() {
     },
     body: JSON.stringify(data),
   })
-    .then((x) => (x = x.json()))
+    .then((x) => {
+      x = x.json();
+    })
     .then((x) => {
       if (typeof x === null) {
-        //uzytkownik o takim emailu nie istnieje, wyswietlic informacje ze logowanie sie nie powiodlo
+        let msg1 = document.getElementById("msg1");
+        msg1.style.display = "block";
+        return;
       }
       user = x;
       localStorage.setItem("user", JSON.stringify(user));
@@ -54,21 +57,9 @@ function register() {
 }
 
 function loadCars(carType) {
-  let url = APIURL + "Car/getCarsByType?carType=" + carType;
-  console.log(url);
-  fetch(url, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((x) => (x = x.json()))
-    .then((x) => (cars = x))
-    .then(() => {
-      //przeniesc do nowej strony html z listą aut
-      //stworzyc nowa strone. stworzyc diva o klasie "car-list", a na dole template z autem
-      //wyswietlic dane na stronie
-    });
+  localStorage.setItem("carType", carType);
+  redirect("home.html","cars.html")
+  
 }
 
 function redirect(oldUrl, newUrl) {

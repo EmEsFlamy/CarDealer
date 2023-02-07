@@ -26,7 +26,6 @@ namespace ProjektSR.Controllers
         public IActionResult Login([FromBody] UserCredential userCredential)
         {
             var user = _userRepository.GetUserByCredentials(userCredential);
-            if (user is null) return BadRequest("User does not exist!");
             return Ok(user);
         }
 
