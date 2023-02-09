@@ -1,4 +1,5 @@
 let cars = undefined;
+let selectedCar = undefined;
 
 window.addEventListener("load", () => {
   const carType = localStorage.getItem("carType");
@@ -20,13 +21,17 @@ window.addEventListener("load", () => {
         let msg = document.getElementById("msg2");
         msg.style.display = "block";
       }
-      cars.forEach((car) => {
+      cars.forEach((car, index) => {
         const clone = template.content.cloneNode(true);
         const name = clone.querySelector("#car-name");
-        const price = clone.querySelector("#car-price")
+        const price = clone.querySelector("#car-price");
+        const radioValue = clone.getElementById("car-value");
         name.innerHTML = car.mark;
         price.innerHTML = car.price;
+        radioValue.value = index;
         carlist.appendChild(clone);
       });
     });
 });
+
+

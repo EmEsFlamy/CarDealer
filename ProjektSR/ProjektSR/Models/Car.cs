@@ -12,6 +12,6 @@ namespace ProjektSR.Models
         public double Price { get; set; }
 
         [JsonIgnore]
-        public Order? Orders { get; set; }
+        public List<Order>? Orders { get; set; }
     }
 }

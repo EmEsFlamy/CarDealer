@@ -12,9 +12,9 @@ namespace ProjektSR.Models
         public int? UserType { get; set; }
 
         [JsonIgnore]
-        public Payment? Payments { get; set; }
+        public List<Payment>? Payments { get; set; }
 
         [JsonIgnore]
-        public Order? Orders { get; set; }
+        public List<Order>?  Orders { get; set; }
     }
 }
