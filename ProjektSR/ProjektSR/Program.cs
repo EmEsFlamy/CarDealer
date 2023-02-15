@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using ProjektSR.Database;
 using ProjektSR.Interfaces;
 using ProjektSR.Repositories;
@@ -23,6 +25,26 @@ public class Program
         builder.Services.AddScoped<ICarRepository, CarRepository>();
         builder.Services.AddScoped<IOrderRepository, OrderRepository>();
         builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+        builder.Services.AddScoped<ITokenRepository, TokenRepository>();
+        
+
+        builder.Services.AddAuthentication(opt =>
+        {
+            opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = "https://localhost:7160",
+                ValidAudience = "https://localhost:7160",
+                IssuerSigningKey = TokenRepository.SecretKey
+            };
+        });
 
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlite(@"DataSource=appliaction.db;"));
@@ -45,6 +67,8 @@ public class Program
         app.UseHttpsRedirection();
 
         app.UseCors(MyAllowSpecificOrigins);
+
+        app.UseAuthentication();
 
         app.UseAuthorization();
 

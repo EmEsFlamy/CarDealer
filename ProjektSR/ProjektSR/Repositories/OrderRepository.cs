@@ -14,10 +14,11 @@ namespace ProjektSR.Repositories
             _context = context;
         }
 
-        public void CreateOrder(Order order)
+        public Order CreateOrder(Order order)
         {
             _context.Orders.Add(order);
             _context.SaveChanges();
+            return order;
         }
 
         public Order? GetOrderById(int id)

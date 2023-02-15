@@ -10,15 +10,24 @@ namespace ProjektSR.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IOrderRepository _orderRepository;
+        private readonly IPaymentRepository _paymentRepository;
 
-        public OrderController(IOrderRepository orderRepository)
+        public OrderController(IOrderRepository orderRepository, 
+            IPaymentRepository paymentRepository)
         {
             _orderRepository = orderRepository;
+            _paymentRepository = paymentRepository;
         }
         [HttpPost]
         public IActionResult CreateOrder([FromBody] Order order)
         {
-            _orderRepository.CreateOrder(order);
+            var o = _orderRepository.CreateOrder(order);
+            var payment = new Payment
+            {
+                OrderId = o.Id,
+                UserId = o.UserId
+            };
+            _paymentRepository.CreatePayment(payment);
             return Ok();
         }
 

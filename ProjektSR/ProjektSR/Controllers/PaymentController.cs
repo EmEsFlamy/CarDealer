@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjektSR.Interfaces;
 using ProjektSR.Models;
 using ProjektSR.Repositories;
@@ -22,6 +23,7 @@ namespace ProjektSR.Controllers
             return Ok();
         }
         [HttpGet]
+        [Authorize(Roles = "1")]
         public IActionResult GetPaymentById([FromQuery]int id)
         {
             var payment = _paymentRepository.GetPaymentById(id);

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjektSR.Interfaces;
 using ProjektSR.Models;
+using System.Text.Json.Serialization;
 
 namespace ProjektSR.Controllers
 {
@@ -9,10 +10,13 @@ namespace ProjektSR.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
+        private readonly ITokenRepository _tokenRepository;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IUserRepository userRepository,
+            ITokenRepository tokenRepository)
         {
             _userRepository = userRepository;
+            _tokenRepository = tokenRepository;
         }
 
         [HttpPost("register")]
@@ -26,7 +30,12 @@ namespace ProjektSR.Controllers
         public IActionResult Login([FromBody] UserCredential userCredential)
         {
             var user = _userRepository.GetUserByCredentials(userCredential);
-            return Ok(user);
+            if (user is null) return Unauthorized();
+            var authenticatedResponse = new AuthenticatedResponse
+            {
+                Token = _tokenRepository.CreateToken(user)
+            };
+            return Ok(authenticatedResponse);
         }
 
         [HttpGet("{id}")]

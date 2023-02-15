@@ -12,19 +12,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../Styles/style.css" />
   </head>
+  <navbar>
+    <button type="button" onclick="logOut()">Log Out</button>
+  </navbar>
   <body>
-    <div id = "msg2">No cars available!</div>
+    <div id="msg2">No cars available!</div>
     <div id="car-list"></div>
+    <button
+      type="button"
+      id="reserveButton"
+      disabled="true"
+      onclick="makeOrder()"
+    >
+      Reserve
+    </button>
     <script src="../Scripts/Scripts.js" async defer></script>
     <script src="../Scripts/cars.js" async defer></script>
   </body>
 </html>
 <template id="car-template">
-  <div class = "car-container">
-    <h3>Model: <span id = "car-name">Car Model</span></h3>
-    <h4>Price: <span id ="car-price">400</span> PLN</h4>
-    From: <input type="date"> To: <input type="date">
-    <input id="car-value" type="radio" name="car" value="997">
+  <div class="car-container">
+    <h3>Model: <span id="car-name">Car Model</span></h3>
+    <h4>Price: <span id="car-price">400</span> PLN</h4>
+    From: <input type="date" class="start-date" /> To:
+    <input type="date" class="end-date" />
+    <input id="car-value" type="radio" name="car" value="997" />
     <div id="msg3">Cannot travel back in time!</div>
   </div>
 </template>

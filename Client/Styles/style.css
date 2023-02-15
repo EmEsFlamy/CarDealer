@@ -48,3 +48,12 @@
   margin-bottom: 15px;
   padding: 1em;
 }
+
+navbar {
+  width: 100wh;
+  padding: 2rem;
+}
+
+navbar > button {
+  position: right;
+}
