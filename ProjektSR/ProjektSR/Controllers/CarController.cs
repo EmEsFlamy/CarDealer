@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjektSR.Interfaces;
 using ProjektSR.Models;
 using ProjektSR.Models.Enums;
@@ -7,6 +8,7 @@ namespace ProjektSR.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CarController : ControllerBase
     {
         private readonly ICarRepository _carRepository;

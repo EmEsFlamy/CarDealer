@@ -10,11 +10,12 @@ let endDate;
 window.addEventListener("load", () => {
   const carType = localStorage.getItem("carType");
   const url = APIURL + "Car/getCarsByType?carType=" + carType;
-  console.log(url);
+  const token = localStorage.getItem("token")
   fetch(url, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
     },
   })
     .then((x) => (x = x.json()))
@@ -82,10 +83,12 @@ function makeOrder() {
     startDate: startDate,
     endDate: endDate,
   };
+  const token = localStorage.getItem("token")
   fetch(APIURL + "order", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
     },
     body: JSON.stringify(data),
   });

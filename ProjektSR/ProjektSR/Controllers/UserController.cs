@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjektSR.Interfaces;
 using ProjektSR.Models;
 using System.Text.Json.Serialization;
@@ -7,6 +8,7 @@ namespace ProjektSR.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
@@ -20,6 +22,7 @@ namespace ProjektSR.Controllers
         }
 
         [HttpPost("register")]
+        [AllowAnonymous]
         public IActionResult Register([FromBody] User user)
         {
             var result = _userRepository.CreateUser(user);
@@ -27,6 +30,7 @@ namespace ProjektSR.Controllers
         }
 
         [HttpPost("login")]
+        [AllowAnonymous]
         public IActionResult Login([FromBody] UserCredential userCredential)
         {
             var user = _userRepository.GetUserByCredentials(userCredential);
@@ -46,6 +50,7 @@ namespace ProjektSR.Controllers
             return Ok(user);
         }
         [HttpDelete]
+        [Authorize (Roles = "1")]
         public IActionResult DeleteUser(int id)
         {
             var result = _userRepository.DeleteUser(id);
