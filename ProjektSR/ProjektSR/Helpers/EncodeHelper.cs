@@ -17,12 +17,12 @@ namespace ProjektSR.Helpers
         }
         public string Encode(string text)
         {
-            string passwordHash = BCrypt.Net.BCrypt.HashPassword(text);
+            string passwordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(text,BCrypt.Net.HashType.SHA512);
             return passwordHash;
         }
         public bool Verify(string pwd1, string pwd2) 
         {
-            bool verified = BCrypt.Net.BCrypt.Verify(pwd1, pwd2);
+            bool verified = BCrypt.Net.BCrypt.EnhancedVerify(pwd1, pwd2, BCrypt.Net.HashType.SHA512);
             return verified;
         }
             

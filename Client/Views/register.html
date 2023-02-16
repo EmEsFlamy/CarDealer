@@ -10,40 +10,39 @@
     <title>Car Dealer | Register</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../Styles/style.css" />
+    <link rel="stylesheet" href="../Styles/ReStyle.css" />
   </head>
-  <body>
-    <div>
-      <h1>Register</h1>
-      <form action="" name="RegisterForm">
-        <p>
+  <body id="body2">
+    <div class="register">
+      <div id="registerStart">Hey, we are glad you choose CarDealer</div>
+      <form id="registerForm" action="" name="RegisterForm">
+        <div id="registerName">
           Name:
-          <input type="text" name="name" placeholder="Your Name" />
-        </p>
-        <p>
+          <input id="registerName1" type="text" name="name"/>
+        </div>
+        <div id="registerSurname">
           Surname:
-          <input type="text" name="surname" placeholder="Your Surname" />
-        </p>
-        <p>
+          <input id="registerSurname1" type="text" name="surname"/>
+        </div>
+        <div id="registerEmail">
           E-mail:
-          <input type="text" name="email" placeholder="Your E-mail" />
-        </p>
-        <p>
+          <input id="registerEmail1" type="text" name="email"/>
+        </div>
+        <div id="registerPassword">
           Password:
-          <input type="password" name="password" placeholder="Your Password" />
-        </p>
-        <p>
+          <input id="registerPassword1" type="password" name="password"/>
+        </div>
+        <div id="registerVPassword">
           Verify Password:
-          <input
+          <input id="registerVPassword1"
             type="password"
             name="verifyPassword"
-            placeholder="Verify Password"
           />
-        </p>
+        </div>
         <div id="msg">Passwords do not match!</div>
       </form>
-      <button onclick="register()">Register</button>
-      <a href="./login.html"><button>Login</button></a>
+      <button id="registerClick" onclick="register()">Register</button>
+      <a id="logIn1" href="./login.html"><div id="createText1">Already have an account? Log In</div></a>
     </div>
 
     <script src="../Scripts/Scripts.js" async defer></script>

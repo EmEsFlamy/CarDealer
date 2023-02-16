@@ -11,21 +11,25 @@ namespace ProjektSR.Controllers
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IPaymentRepository _paymentRepository;
+        private readonly ICarRepository _carRepository;
 
         public OrderController(IOrderRepository orderRepository, 
-            IPaymentRepository paymentRepository)
+            IPaymentRepository paymentRepository, ICarRepository carRepository)
         {
             _orderRepository = orderRepository;
             _paymentRepository = paymentRepository;
+            _carRepository = carRepository;
         }
         [HttpPost]
         public IActionResult CreateOrder([FromBody] Order order)
         {
             var o = _orderRepository.CreateOrder(order);
+            var car = _carRepository.GetCarById(o.CarId);
             var payment = new Payment
             {
                 OrderId = o.Id,
-                UserId = o.UserId
+                UserId = o.UserId,
+                TotalPrice = (int)(o.EndDate - o.StartDate).TotalDays * (int)car.Price
             };
             _paymentRepository.CreatePayment(payment);
             return Ok();

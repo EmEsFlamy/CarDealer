@@ -12,22 +12,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../Styles/style.css" />
   </head>
-  <body>
-    <div>
-      <h1>Login</h1>
-      <form action="" name="LoginForm">
-        <p>
-          E-mail:
-          <input type="text" name="email" placeholder="Your E-mail" />
-        </p>
-        <p>
-          Password:
-          <input type="password" name="password" placeholder="Your Password" />
-        </p>
+  <body id="backgroundL">
+    <div class="login">
+      <div id="login1">Sign in to your account</div>
+      <form action="" name="LoginForm" id="loginForm">
+        <div id="login2">
+          <div>E-mail</div>
+          <input id="login2-1" type="text" name="email" />
+        </div>
+        <div id="login3">
+          <div>Password</div>
+          <input id="login3-1" type="password" name="password" />
+        </div>
         <div id="msg1">User does not exist!</div>
       </form>
-      <button onclick="login()">login</button>
-      <a href="./register.html"><button>Register</button></a>
+      <button id="loginClick" onclick="login()">CONTINUE</button>
+      <a id="singUp1" href="./register.html">
+        <div id="createText">Don't have an account? Sign Up</div>
+      </a>
     </div>
 
     <script src="../Scripts/Scripts.js" async defer></script>

@@ -11,9 +11,7 @@ namespace ProjektSR.Models
         public virtual int UserId { get; set; }
         [JsonIgnore]
         public User? User { get; set; }
-        
         public bool IsPaid { get; set; } = false;
-
-        
+        public int? TotalPrice { get; set; }
     }
 }

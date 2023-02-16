@@ -3,6 +3,7 @@ const APIURL = "https://localhost:7160/api/";
 function login() {
   let email = document.forms["LoginForm"]["email"].value;
   let password = document.forms["LoginForm"]["password"].value;
+  if (email === "" || password === "") return; // dodac walidacje
   const data = { email, password };
   fetch(APIURL + "user/login", {
     method: "POST",
@@ -11,8 +12,11 @@ function login() {
     },
     body: JSON.stringify(data),
   })
-    .then((x) => x.json())
-
+    .then((x) => {
+      if (x.ok) return x.json();
+      return Promise.reject(x);
+    })
+    // .then((x) => x.json())
     .then((x) => {
       console.log(x);
       if (x == undefined) {
@@ -23,7 +27,7 @@ function login() {
       localStorage.setItem("token", x.token);
       redirect("login.html", "home.html");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.error(err));
 }
 function register() {
   const email = document.forms["RegisterForm"]["email"].value;
@@ -48,10 +52,19 @@ function register() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
-  }).then(() => {
-    alert("Register Succeed!");
-    redirect("register.html", "login.html");
-  });
+  }).then(x => {
+    if (x.ok) return x.json();
+      return Promise.reject(x);
+  })
+  .then((x) => {
+    if(x){
+      alert("Register Succeed!");
+      redirect("register.html", "login.html");
+    }else{
+      alert("Register failed!")
+    }
+  })
+  .catch((err) => console.error(err));
 }
 
 function logOut() {

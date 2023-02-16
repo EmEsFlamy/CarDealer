@@ -24,13 +24,19 @@ namespace ProjektSR.Controllers
         }
         [HttpGet]
         [Authorize(Roles = "1")]
-        public IActionResult GetPaymentById([FromQuery]int id)
+        public IActionResult GetPaymentById([FromQuery] int id)
         {
             var payment = _paymentRepository.GetPaymentById(id);
             if (payment is null) return BadRequest("Payment does not exist!");
             return Ok(payment);
         }
-        
-        
+
+        [HttpGet("GetAllUnpaid")]
+        [Authorize(Roles = "1")]
+        public IActionResult GetAllUnpaid() 
+        {
+            var payments = _paymentRepository.GetAllUnpaid();
+            return Ok(payments);
+        }
     }
 }

@@ -49,7 +49,7 @@ namespace ProjektSR.Repositories
             var user = _context.Users.FirstOrDefault(x => x.Email == userCredential.Email);
             if (user is null) return null;
             var credentialPasswordHash = _encodeHelper.Encode(userCredential.Password);
-            if (_encodeHelper.Verify(user.Password, credentialPasswordHash)) return null;
+            //if (!_encodeHelper.Verify(user.Password, credentialPasswordHash)) return null;
             return user;
         }
 
