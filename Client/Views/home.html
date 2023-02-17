@@ -12,13 +12,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../Styles/style.css" />
   </head>
-  
-    <navbar>
-      <button type="button" onclick="logOut()">Log Out</button>
-    </navbar>
-  
+
+  <navbar>
+    <button type="button" onclick="logOut()">Log Out</button>
+    <div class="admin-panel" style="display: none">
+      <a href="adminPanel.html">
+        <button type="button">Admin Panel</button>
+      </a>
+    </div>
+  </navbar>
+
   <body id="body3">
-    
     <div id="homeStart">Pick the car type</div>
     <div class="container">
       <div class="category" onclick="loadCars(0)">Sport</div>
@@ -27,5 +31,6 @@
       <div class="category" onclick="loadCars(3)">Luxury</div>
     </div>
     <script src="../Scripts/Scripts.js" async defer></script>
+    <script src="../Scripts/admin.js" async defer></script>
   </body>
 </html>

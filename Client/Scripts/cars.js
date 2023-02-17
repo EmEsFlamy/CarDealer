@@ -102,8 +102,4 @@ function getUserIdFromToken() {
   ];
 }
 
-function getUserRoleFromToken() {
-  const token = localStorage.getItem("token");
-  const t = JSON.parse(atob(token.split(".")[1]));
-  return t["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
-}
+
