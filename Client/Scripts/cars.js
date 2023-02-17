@@ -35,10 +35,12 @@ window.addEventListener("load", () => {
 
 function createCarDiv(car, index) {
   const clone = template.content.cloneNode(true);
-  const name = clone.querySelector("#car-name");
+  const mark = clone.querySelector("#car-mark");
+  const model = clone.querySelector("#car-model");
   const price = clone.querySelector("#car-price");
   const radioValue = clone.getElementById("car-value");
-  name.innerHTML = car.mark;
+  mark.innerHTML = car.mark;
+  model.innerHTML = car.model;
   price.innerHTML = car.price;
   radioValue.value = index;
   carlist.appendChild(clone);

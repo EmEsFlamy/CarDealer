@@ -40,8 +40,8 @@ function createPaymentDiv(payment, index) {
   surname.innerHTML = payment.userSurname;
   mark.innerHTML = payment.mark;
   model.innerHTML = payment.model;
-  startDate.innerHTML = Date(payment.startDate);
-  endDate.innerHTML = Date(payment.endDate);
+  startDate.innerHTML = payment.startDate;
+  endDate.innerHTML = payment.endDate;
   price.innerHTML = payment.price;
   paymentList.appendChild(clone);
 }

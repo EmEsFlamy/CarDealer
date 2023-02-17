@@ -15,9 +15,9 @@
   <navbar>
     <button type="button" onclick="logOut()">Log Out</button>
   </navbar>
-  <body>
+  <body id="bodyCars">
     <div id="msg2">No cars available!</div>
-    <div id="car-list"></div>
+    <div id="car-list" class="carsList"></div>
     <button
       type="button"
       id="reserveButton"
@@ -32,8 +32,10 @@
 </html>
 <template id="car-template">
   <div class="car-container">
-    <h3>Model: <span id="car-name">Car Model</span></h3>
-    <h4>Price: <span id="car-price">400</span> PLN</h4>
+    <h3>Mark: <span id="car-mark">Car Mark</span></h3>
+    <h3>Model: <span id="car-model">Car Model</span></h3>
+    <h4>Price: <span id="car-price">400</span> PLN (per day)</h4>
+    <br>
     From: <input type="date" class="start-date" /> To:
     <input type="date" class="end-date" />
     <input id="car-value" type="radio" name="car" value="997" />
