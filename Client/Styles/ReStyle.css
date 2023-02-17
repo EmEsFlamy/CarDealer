@@ -8,6 +8,22 @@
   color: red;
 }
 
+#message {
+  display: none;
+  color: red;
+}
+
+.passwordInput{
+  margin-top: 5%; 
+  text-align :center;
+}
+
+.displayBadge{
+  margin-top: 5%; 
+  display: none; 
+  text-align :center;
+}
+
 body {
   min-width: 100vw;
   min-height: 100vh;

@@ -32,5 +32,12 @@ namespace ProjektSR.Repositories
             var payment = _context.Payments.FirstOrDefault(p => p.Id == id);
             return payment;
         }
+
+        public void MarkAsPaid(int id)
+        {
+            var payment = GetPaymentById(id);
+            payment.IsPaid = true;
+            _context.SaveChanges();
+        }
     }
 }

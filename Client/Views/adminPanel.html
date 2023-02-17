@@ -14,13 +14,20 @@
   </head>
   <body>
     <div id="paymentList"></div>
-
+    <button onclick="pay()">Pay</button>
     <script src="../Scripts/Scripts.js" async defer></script>
     <script src="../Scripts/payments.js" async defer></script>
   </body>
 </html>
 <template id="payment-template">
   <div class="payment-container">
-    <p>id: <span class="paymentId">-1</span></p>
+    <p>Name: <span class="userName">Jan</span></p>
+    <p>Surname: <span class="userSurname">Kowalski</span></p>
+    <p>Mark: <span class="carMark">Audi</span></p>
+    <p>Model: <span class="carModel">A7</span></p>
+    <p>Start Date: <span class="startDate">01-02-2023</span></p>
+    <p>End Date: <span class="endDate">02-02-2023</span></p>
+    <p>Price: <span class="carPrice">400</span> PLN</p>
+    <input id="payment-value" type="radio" name="paymentValue" value="997" />
   </div>
 </template>

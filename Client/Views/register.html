@@ -26,12 +26,13 @@
         </div>
         <div id="registerEmail">
           E-mail:
-          <input id="registerEmail1" type="text" name="email"/>
+          <input id="registerEmail1" type="email" name="email"/>
         </div>
         <div id="registerPassword">
           Password:
-          <input id="registerPassword1" type="password" name="password"/>
+          <input id="registerPassword1"  type="password" name="password"/>
         </div>
+        <span id="StrengthDisp" class="bagde displayBadge">Weak</span>
         <div id="registerVPassword">
           Verify Password:
           <input id="registerVPassword1"
@@ -39,9 +40,10 @@
             name="verifyPassword"
           />
         </div>
+        <div id="message">User already Exist!</div>
         <div id="msg">Passwords do not match!</div>
       </form>
-      <button id="registerClick" onclick="register()">Register</button>
+      <button id="registerClick" onclick="register()" type="submit">Register</button>
       <a id="logIn1" href="./login.html"><div id="createText1">Already have an account? Log In</div></a>
     </div>
 

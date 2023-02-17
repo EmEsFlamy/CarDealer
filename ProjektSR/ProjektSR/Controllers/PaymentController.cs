@@ -39,5 +39,13 @@ namespace ProjektSR.Controllers
             var payments = _paymentRepository.GetAllUnpaid();
             return Ok(payments);
         }
+
+        [HttpPost("MarkAsPaid")]
+        [Authorize(Roles = "1")]
+        public IActionResult MarkAsPaid([FromBody] VerifyPayment verifyPayment) 
+        {
+            _paymentRepository.MarkAsPaid(verifyPayment.Id);
+            return Ok();
+        }
     }
 }
