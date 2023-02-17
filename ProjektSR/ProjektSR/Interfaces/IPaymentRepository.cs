@@ -8,6 +8,6 @@ namespace ProjektSR.Interfaces
 
         public Payment? GetPaymentById(int id);
 
-        public IEnumerable<Payment> GetAllUnpaid();
+        public IEnumerable<PaymentDetails> GetAllUnpaid();
     }
 }

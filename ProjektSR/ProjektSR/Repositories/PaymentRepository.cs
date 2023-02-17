@@ -20,10 +20,10 @@ namespace ProjektSR.Repositories
             _context.SaveChanges();
         }
 
-        public IEnumerable<Payment> GetAllUnpaid()
+        public IEnumerable<PaymentDetails> GetAllUnpaid()
         {
-            var payments = _context.Payments.Where(x => !x.IsPaid).AsEnumerable();
-            if(payments is null) return Enumerable.Empty<Payment>();
+            var payments = _context.PaymentsDetails.Where(x => !x.IsPaid).AsEnumerable();
+            if(payments is null) return Enumerable.Empty<PaymentDetails>();
             return payments;
         }
 

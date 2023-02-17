@@ -10,10 +10,21 @@ namespace ProjektSR.Database
         {
 
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .Entity<PaymentDetails>(eb =>
+                {
+                    eb.HasNoKey();
+                    eb.ToView("View_PaymentDetails");
+                });
+        }
        
         public DbSet<User> Users { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<PaymentDetails> PaymentsDetails { get; set; }
     }
 }
