@@ -19,7 +19,7 @@ namespace ProjektSR.Repositories
             _context.SaveChanges();
         }
 
-        public Car? GetCarById(int id)
+        public Car GetCarById(int id)
         {
             var car = _context.Cars.FirstOrDefault(c => c.Id == id);
             return car;

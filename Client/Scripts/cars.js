@@ -1,3 +1,4 @@
+
 const carlist = document.querySelector("#car-list");
 const template = document.querySelector("#car-template");
 const reserveButton = document.querySelector("#reserveButton");
@@ -104,3 +105,8 @@ function getUserIdFromToken() {
     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
   ];
 }
+
+function back() {
+  redirect("cars.html","home.html")
+}
+

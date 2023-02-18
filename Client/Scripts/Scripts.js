@@ -1,10 +1,6 @@
 const APIURL = "https://localhost:7160/api/";
 
-let timeout;
-let passwordCheck = document.getElementById('registerPassword1');
-let strengthBadge = document.getElementById('StrengthDisp');
-let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
-let mediumPassword = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))')
+
 
 function login() {
   let email = document.forms["LoginForm"]["email"].value;
@@ -71,29 +67,7 @@ function register() {
     .catch((err) => {});
 }
 
-function StrengthChecker(PasswordParameter) {
-  if(strongPassword.test(PasswordParameter)) {
-      strengthBadge.style.backgroundColor = "green";
-      strengthBadge.textContent = 'Strong';
-  } else if(mediumPassword.test(PasswordParameter)) {
-      strengthBadge.style.backgroundColor = 'yellow';
-      strengthBadge.textContent = 'Medium';
-  } else {
-      strengthBadge.style.backgroundColor = 'red';
-      strengthBadge.textContent = 'Weak';
-  }
-}
 
-passwordCheck.addEventListener("input", () => {
-  strengthBadge.style.display = 'block';
-  clearTimeout(timeout);
-  timeout = setTimeout(() => StrengthChecker(passwordCheck.value), 500);
-  if(passwordCheck.value.length !== 0) {
-      strengthBadge.style.display != 'block';
-  } else {
-      strengthBadge.style.display = 'none';
-  }
-});
 
 function logOut() {
   localStorage.clear();
@@ -115,4 +89,12 @@ function redirectOnLogOut() {
   let url = window.location.href;
   const oldUrl = url.split("/").at(-1);
   redirect(oldUrl, "login.html");
+}
+
+function backHome() {
+  redirect("adminPanel.html", "home.html")
+}
+
+function createCar() {
+  redirect("adminPanel.html", "adminCarsAdd.html");
 }
